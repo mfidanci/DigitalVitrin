@@ -1,0 +1,84 @@
+{% extends "./base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    <!-- Introduction section -->
+    <section class="bg-info text-white py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-bold">DigitalVitrin</h1>
+                <p class="lead blink-text">SHOP TODAY <br> ENJOY TOMORROW <br> REPEAT FOREVER</p>
+                <p class="mb-4">
+                <h3>Discover the world's leading digital marketplace.</h3>
+                </p>
+                <a href="#" class="btn btn-light my-2">Create an account</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://img.freepik.com/free-vector/ecommerce-web-page-concept-illustration_114360-8204.jpg?w=996&t=st=1692356851~exp=1692357451~hmac=6c185447f2b68e3b119e7ca93d8ed6b9fc28e76f03b5a00b22d17265d8410933" alt="Introduction Image" class="img-fluid rounded">
+            </div>
+        </div>
+    </section>
+
+    <p></p>
+
+    <!-- Featured Products Section -->
+    <section class="py-5 bg-light mb-3">
+        <div class="container">
+            <h2 class="text-center fw-bold">Featured Products</h2>
+            <hr>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                {% for featured_product in featured_products %}
+
+                <!-- Example Product Card -->
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img class="card-img-top" alt="Responsive Image" src="{{ featured_product.image.url }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ featured_product.brand | capfirst }}</h5>
+                            <p class="card-text">
+                                <a class="text-info text-decoration-none" href="">{{ featured_product.title | capfirst }}</a>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5>${{ featured_product.price }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- More products here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- All products section -->
+    <section class="album py-5 bg-white">
+        <div class="container">
+            <div class="pb-3 h3">All products</div>
+            <hr>
+            <br>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+                
+                {% for product in my_products %}
+
+                
+                <!-- Example Product Card -->
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img class="card-img-top" alt="Responsive Image" src="{{ product.image.url }}">
+                        <div class="card-body">
+                            <h6 class="card-title">{{ product.brand | capfirst }}</h6>
+                            <p class="card-text">
+                                <a class="text-info text-decoration-none" href="{{ product.get_absolute_url }}">{{ product.title | capfirst }}</a>
+                            </p>
+                            <h5>${{ product.price }}</h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
